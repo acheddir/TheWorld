@@ -116,6 +116,8 @@ namespace TheWorld.Migrations
                     b.Property<int?>("TripId");
 
                     b.HasKey("Id");
+
+                    b.HasAnnotation("Relational:TableName", "Stops");
                 });
 
             modelBuilder.Entity("TheWorld.Models.Trip", b =>
@@ -130,6 +132,8 @@ namespace TheWorld.Migrations
                     b.Property<string>("UserName");
 
                     b.HasKey("Id");
+
+                    b.HasAnnotation("Relational:TableName", "Trips");
                 });
 
             modelBuilder.Entity("TheWorld.Models.WorldUser", b =>

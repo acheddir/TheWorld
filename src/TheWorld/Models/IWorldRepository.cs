@@ -4,6 +4,7 @@ namespace TheWorld.Models
 {
     public interface IWorldRepository
     {
+        void ClearCache(string username);
         IEnumerable<Trip> GetAllTrips();
         IEnumerable<Trip> GetAllTripsWithStops();
         IEnumerable<Trip> GetUserTripsWithStops(string username);

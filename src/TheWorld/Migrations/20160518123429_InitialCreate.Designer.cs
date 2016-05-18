@@ -8,8 +8,8 @@ using TheWorld.Models;
 namespace TheWorld.Migrations
 {
     [DbContext(typeof(WorldContext))]
-    [Migration("20160417135411_IdentityEntities")]
-    partial class IdentityEntities
+    [Migration("20160518123429_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -117,6 +117,8 @@ namespace TheWorld.Migrations
                     b.Property<int?>("TripId");
 
                     b.HasKey("Id");
+
+                    b.HasAnnotation("Relational:TableName", "Stops");
                 });
 
             modelBuilder.Entity("TheWorld.Models.Trip", b =>
@@ -131,6 +133,8 @@ namespace TheWorld.Migrations
                     b.Property<string>("UserName");
 
                     b.HasKey("Id");
+
+                    b.HasAnnotation("Relational:TableName", "Trips");
                 });
 
             modelBuilder.Entity("TheWorld.Models.WorldUser", b =>

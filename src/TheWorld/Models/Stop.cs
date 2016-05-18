@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TheWorld.Models
 {
+    [Table("Stops")]
     public class Stop
     {
         public int Id { get; set; }

@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TheWorld.Models
 {
+    [Table("Trips")]
     public class Trip
     {
         public int Id { get; set; }

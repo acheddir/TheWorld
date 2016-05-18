@@ -34,7 +34,7 @@ namespace TheWorld.Controllers.Api
                 var trip = _repository.GetTripByName(tripName, User.Identity.Name);
                 if (trip == null)
                 {
-                    _logger.LogError($"Trip {tripName}, not found for user {User.Identity.Name}");
+                    _logger.LogError($"Trip \"{tripName}\", not found for user \"{User.Identity.Name}\"");
                     Response.StatusCode = (int) HttpStatusCode.NotFound;
                     return Json(new { Message = "Failed", Stops = new object[] {} });
                 }
@@ -45,7 +45,7 @@ namespace TheWorld.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Failed to get stops in trip {tripName} for user {User.Identity.Name}", ex);
+                _logger.LogError($"Failed to get stops in trip \"{tripName}\" for user \"{User.Identity.Name}\"", ex);
                 Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 return Json(new { Message = "Failed", Stops = new object[] {}, Exception = ex });
             }
@@ -59,7 +59,7 @@ namespace TheWorld.Controllers.Api
                 var trip = _repository.GetTripByName(tripName, User.Identity.Name);
                 if (trip == null)
                 {
-                    _logger.LogError($"Trip \"{tripName}\", not found for user \"{User.Identity.Name}\"");
+                    _logger.LogError($"Trip \"{tripName}\" not found for user \"{User.Identity.Name}\"");
                     Response.StatusCode = (int)HttpStatusCode.NotFound;
                     return Json(new { Message = "Failed", Stop = new { } });
                 }
@@ -72,7 +72,7 @@ namespace TheWorld.Controllers.Api
             {
                 _logger.LogError($"Failed to get stop \"{stopName}\" in trip \"{tripName}\" for user \"{User.Identity.Name}\"", ex);
                 Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                return Json(new { Message = "Failed", Stops = new { }, Exception = ex });
+                return Json(new { Message = "Failed", Stop = new { }, Exception = ex });
             }
         }
 
@@ -91,7 +91,7 @@ namespace TheWorld.Controllers.Api
                     if (!coordResult.Success)
                     {
                         Response.StatusCode = (int) HttpStatusCode.BadRequest;
-                        return Json(new { Message = coordResult.Message });
+                        return Json(new { Message = coordResult.Message, CreatedStop = new {} });
                     }
 
                     newStop.Longitude = coordResult.Longitude;
@@ -101,21 +101,23 @@ namespace TheWorld.Controllers.Api
                     _repository.AddStop(tripName, User.Identity.Name, newStop);
                     if (_repository.SaveAll())
                     {
+                        _repository.ClearCache(User.Identity.Name);
+
                         Response.StatusCode = (int)HttpStatusCode.Created;
-                        return Json(Mapper.Map<StopViewModel>(newStop));
+                        return Json(new { Message = "Success", CreatedStop = Mapper.Map<StopViewModel>(newStop) });
                     }
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Failed to save a new stop for trip {tripName}", ex);
+                _logger.LogError($"Failed to save a new stop for trip \"{tripName}\"", ex);
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return Json(new { Message = ex.Message });
+                return Json(new { Message = "Failed", CreatedStop = new {}, Exception = ex });
             }
 
             _logger.LogError("Validation failed on new stop.");
             Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            return Json(new { Message = "Validation failed on new stop.", ModelState = ModelState });
+            return Json(new { Message = "Validation failed on new stop.", CreatedStop = new {}, ModelState = ModelState });
         }
 
         #region Fields
