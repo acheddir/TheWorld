@@ -6,59 +6,55 @@
     <meta charset="utf-8" />
     <title>@ViewBag.Title | The World</title>
 
-    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/lib/bootswatch/yeti/bootstrap.css" rel="stylesheet" />
-    <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootswatch/yeti/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="~/lib/sweetalert/dist/sweetalert.min.css" rel="stylesheet">
     <link href="~/css/site.css" rel="stylesheet" />
-
+    @RenderSection("styles", false)
 </head>
 
 <body>
 
-    <div id="sidebar">
-        @if (User.Identity.IsAuthenticated)
-        {
-            <img src="~/img/user1.jpg" alt="headshot" class="headshot" />
-            <span id="username">@User.Identity.Name</span>
-        }
-        <ul class="nav">
-            <li class="active"><a asp-controller="App" asp-action="Index">Home</a></li>
-            <li><a asp-controller="App" asp-action="About">About</a></li>
-            <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <li><a asp-controller="App" asp-action="Trips">My Trips</a></li>
-                <li><a asp-controller="Auth" asp-action="Logout">Logout</a></li>
-            }
-        </ul>
-    </div>
+    <nav class="navbar navbar-inverse sidebar" role="navigation">
+        <div class="container-fluid" id="sidebar">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="text-left">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <img src="~/img/user1.jpg" alt="headshot" class="headshot" />
+                        <span id="username">@User.Identity.Name</span>
+                    }
+                </div>
+		    </div>
+	        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+			    <ul class="nav navbar-nav">
+                    <li id="nav-home" class="active"><a asp-controller="App" asp-action="Index">Home</a></li>
+                    <li id="nav-about"><a asp-controller="App" asp-action="About">About</a></li>
+                    <li id="nav-contact"><a asp-controller="App" asp-action="Contact">Contact</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li id="nav-trips"><a asp-controller="App" asp-action="Trips">My Trips</a></li>
+                        <li><a asp-controller="Auth" asp-action="Logout">Logout</a></li>
+                    }
+	            </ul>
+		    </div>
+	    </div>
+    </nav>	
 
-    <div id="wrapper">
+    <div id="wrapper" class="main">
 
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
-                <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <button id="sidebarToggle" class="btn btn-primary">
-                            <i class="fa fa-angle-left"></i>
-                        </button>
-                    </li>
-                </ul>
-
-                <a asp-controller="App" asp-action="Index" class="navbar-brand">The World</a>
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#" class="btn btn-sm btn-info">
-                            <i class="fa fa-save"></i> Save
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="btn btn-sm btn-info">
-                            <i class="fa fa-print"></i> Print
-                        </a>
-                    </li>
-                </ul>
+                <div class="row">
+                    <a asp-controller="App" asp-action="Index" class="navbar-brand">The World</a>
+                </div>
             </div>
         </nav>
 
@@ -66,18 +62,28 @@
             <div>
                 @RenderBody()
             </div>
-
         </div>
+        
         <div id="footer" class="container-fluid">
-            <div class="navbar navbar-inverse navbar-fixed-bottom">
-                <h4 class="text-center text-info">&copy; 2016 The World Ltd.</h4>
-            </div>
+            <div class="row no-gutter">
+                <div class="navbar navbar-inverse navbar-bottom">
+	                <h4 class="text-center text-info">&copy; 2016 The World Ltd.</h4>
+	            </div>
+            </div>	
         </div>
+        
     </div>
 
-    <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-    <script type="text/javascript" src="~/js/site.js"></script>
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="~/lib/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <environment names="Development">
+        <script type="text/javascript" src="~/js/site.js"></script>
+    </environment>
+    <environment names="Production,Staging">
+        <script type="text/javascript" src="~/lib/_app/site.js"></script>
+    </environment>
 
     @RenderSection("scripts", false)
 

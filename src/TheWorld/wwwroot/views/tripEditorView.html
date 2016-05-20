@@ -1,0 +1,54 @@
+<div>
+    <div class="col-md-12">
+        <a href="#/" class="btn btn-sm btn-default text-left"> <i class="fa fa-angle-left"></i> Back</a>
+    </div>
+    
+	<div class="col-md-3">
+	    <h2> {{ vm.tripName }}</h2>
+
+		<form novalidate name="newStopForm" ng-submit="vm.addStop()">
+	        <div class="form-group">
+	            <label for="arrival">Date</label>
+	            <input data-provide="datepicker" class="form-control" id="arrival" name="arrival" ng-model="vm.newStop.arrival" 
+					   required ng-pattern="/^(\d{2})\/(\d{2})\/(\d{4})$/"/>
+				<span ng-show="newStopForm.arrival.$error.required" class="text-warning text-muted" style="font-size: 11px;"><i class="fa fa-warning"></i> Arrival date is required.</span>
+				<span ng-show="newStopForm.arrival.$error.pattern" class="text-warning text-muted" style="font-size: 11px;"><i class="fa fa-warning"></i> Arrival date must in format of mm/dd/yyyy.</span>
+	        </div>
+	        <div class="form-group">
+	            <label for="location">Location</label>
+	            <input class="form-control" id="location" name="location" ng-model="vm.newStop.name" required ng-minlength="5" />
+				<span ng-show="newStopForm.location.$error.required" class="text-warning text-muted" style="font-size: 11px;"><i class="fa fa-warning"></i> Location is required.</span>
+				<span ng-show="newStopForm.location.$error.minlength" class="text-warning text-muted" style="font-size: 11px;"><i class="fa fa-warning"></i> Location must be at least 5 characters.</span>
+	        </div>
+	        <div class="form-group">
+	            <input type="submit" value="Add" class="btn btn-success" ng-disabled="newStopForm.$invalid" />
+	        </div>
+	    </form>
+	
+		<wait-cursor display-when="vm.isBusy"></wait-cursor>
+		<div class="alert alert-danger" ng-show="vm.errorMessage">
+			{{ vm.errorMessage }}
+		</div>
+		
+		<table class="table table-responsive table-striped table-bordered table-condensed">
+			<tr>
+				<th>Location</th>
+				<th>Arrival</th>
+			</tr>
+			<tr ng-repeat="stop in vm.stops">
+				<td>{{ stop.name }}</td>
+				<td>{{ stop.arrival | date }}</td>
+			</tr>
+		</table>
+
+	</div>
+	
+	<div class="col-md-9" style="padding-left: 10px;">
+	    <h2>The Map</h2>
+		
+		<div id="map">
+			
+		</div>
+	</div>
+    
+</div>	

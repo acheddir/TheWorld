@@ -2,6 +2,14 @@
 @{
     ViewBag.Title = "Home Page";
 }
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $(".nav li").removeClass("active");
+            $('#nav-home').addClass('active');
+        });
+    </script>
+}
 
 <div class="row">
 

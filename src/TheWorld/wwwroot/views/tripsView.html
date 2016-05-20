@@ -1,0 +1,36 @@
+<div>
+    <div>
+        <h2>My Trips</h2>
+    </div>
+    <br/>
+	<div class="col-md-12">
+	    <div class="text-danger" ng-show="vm.errorMessage">{{ vm.errorMessage }}</div>
+	    <wait-cursor display-when="vm.isBusy"></wait-cursor>
+	    <table class="table table-responsive table-striped table-bordered table-condensed">
+            <tr>
+                <th class="text-center">Trip</th>
+                <th class="text-center">Date</th>
+                <th></th>
+            </tr>
+	        <tr ng-repeat="trip in vm.trips">
+	            <td class="vert-align text-center">{{ trip.name }}</td>
+	            <td class="vert-align text-center">{{ trip.created | date }}</td>
+	            <td class="col-md-1 vert-align text-center">
+	                <a ng-href="#/editor/{{ trip.name }}" class="btn btn-sm btn-primary">Manage</a>
+	            </td>
+	        </tr>
+	    </table>
+	
+	    <form novalidate name="newTripForm" ng-submit="vm.addTrip()" class="col-md-4">
+	        <div class="form-group">
+	            <label for="name">Trip Name</label>
+	            <input type="text" class="form-control" id="name" name="name" ng-model="vm.newTrip.name" required ng-minlength="5" />
+	            <span ng-show="newTripForm.name.$error.required" class="text-warning text-muted" style="font-size: 11px;"><i class="fa fa-warning"></i> Name is required.</span>
+	            <span ng-show="newTripForm.name.$error.minlength" class="text-warning text-muted" style="font-size: 11px;"><i class="fa fa-warning"></i> Name must be at least 5 characters.</span>
+	        </div>
+	        <div class="form-group">
+	            <input type="submit" value="Add" class="btn btn-sm btn-success" ng-disabled="newTripForm.$invalid" />
+	        </div>
+	    </form>
+	</div>
+</div>	

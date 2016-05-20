@@ -7,28 +7,43 @@
     angular.module("app-trips")
         .controller("tripsController", tripsController);
 
-    function tripsController() {
+    function tripsController($http) {
         var vm = this;
 
-        vm.trips = [
-            {
-                name: "US Trip",
-                created: new Date()
-            },
-            {
-                name: "World Trip",
-                created: new Date()
-            }
-        ];
+        vm.trips = [];
 
         vm.newTrip = {};
 
-        vm.addTrip = function () {
-            vm.trips.push({
-                name: vm.newTrip.name,
-                created: new Date()
+        vm.errorMessage = "";
+        vm.isBusy = true;
+        
+        $http.get("/api/trips")
+            .then(function (response) {
+                // success
+                angular.copy(response.data.trips, vm.trips);
+            }, function (err) {
+                // failure
+                vm.errorMessage = "Failed to load data: " + err;
+            })
+            .finally(function () {
+                vm.isBusy = false;
             });
-            vm.newTrip = {};
+
+        vm.addTrip = function () {
+            vm.isBusy = true;
+
+            $http.post("/api/trips", vm.newTrip)
+                .then(function (response) {
+                    // success
+                    vm.trips.push(response.data.createdTrip);
+                    vm.newTrip = {};
+                }, function (err) {
+                    // failure
+                    vm.errorMessage = "Failed to save a new trip: " + err;
+                })
+                .finally(function() {
+                    vm.isBusy = false;
+                });
         };
     }
 

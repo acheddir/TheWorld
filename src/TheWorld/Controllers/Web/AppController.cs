@@ -22,8 +22,7 @@ namespace TheWorld.Controllers.Web
         [Authorize]
         public IActionResult Trips()
         {
-            var trips = _worldRepository.GetAllTrips();
-            return View(trips);
+            return View();
         }
 
         public IActionResult About()
@@ -53,7 +52,7 @@ namespace TheWorld.Controllers.Web
                     model.Message))
                 {
                     ModelState.Clear();
-                    ViewBag.Message = "Mail Sent. Thanks!";
+                    ViewBag.MessageSuccess = "Mail Sent. Thanks!";
                 }
             }
 

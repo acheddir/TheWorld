@@ -1,5 +1,13 @@
 ﻿@{
     ViewBag.Title = "About Page";
 }
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $(".nav li").removeClass("active");
+            $('#nav-about').addClass('active');
+        });
+    </script>
+}
 
 <h2>About The World</h2>

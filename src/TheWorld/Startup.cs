@@ -96,7 +96,7 @@ namespace TheWorld
 
         //This method is invoked when ASPNET_ENV is 'Development' or is not defined
         //The allowed values are Development,Staging and Production
-        public async void ConfigureDevelopment(IApplicationBuilder app, ILoggerFactory loggerFactory, WorldContextSeedData seeder)
+        public async void ConfigureDevelopment(IApplicationBuilder app, ILoggerFactory loggerFactory, WorldContextSeedData seeder, IHostingEnvironment env)
         {
             loggerFactory.AddConsole(minLevel: LogLevel.Verbose);
 
@@ -114,12 +114,12 @@ namespace TheWorld
             // default path is: /runtimeinfo
             app.UseRuntimeInfoPage();
 
-            await Configure(app, seeder);
+            await Configure(app, seeder, env);
         }
 
         //This method is invoked when ASPNET_ENV is 'Staging'
         //The allowed values are Development,Staging and Production
-        public async void ConfigureStaging(IApplicationBuilder app, ILoggerFactory loggerFactory, WorldContextSeedData seeder)
+        public async void ConfigureStaging(IApplicationBuilder app, ILoggerFactory loggerFactory, WorldContextSeedData seeder, IHostingEnvironment env)
         {
             loggerFactory.AddConsole(minLevel: LogLevel.Warning);
 
@@ -128,12 +128,12 @@ namespace TheWorld
 
             app.UseExceptionHandler("/Home/Error");
 
-            await Configure(app, seeder);
+            await Configure(app, seeder, env);
         }
 
         //This method is invoked when ASPNET_ENV is 'Production'
         //The allowed values are Development,Staging and Production
-        public async void ConfigureProduction(IApplicationBuilder app, ILoggerFactory loggerFactory, WorldContextSeedData seeder)
+        public async void ConfigureProduction(IApplicationBuilder app, ILoggerFactory loggerFactory, WorldContextSeedData seeder, IHostingEnvironment env)
         {
             loggerFactory.AddConsole(minLevel: LogLevel.Warning);
 
@@ -142,10 +142,10 @@ namespace TheWorld
 
             app.UseExceptionHandler("/Home/Error");
 
-            await Configure(app, seeder);
+            await Configure(app, seeder, env);
         }
 
-        public async Task Configure(IApplicationBuilder app, WorldContextSeedData seeder)
+        public async Task Configure(IApplicationBuilder app, WorldContextSeedData seeder, IHostingEnvironment env)
         {
             app.UseStaticFiles();
 
