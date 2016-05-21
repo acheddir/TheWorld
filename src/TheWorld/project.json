@@ -40,7 +40,6 @@
   ],
   "version": "1.0.0-*",
   "scripts": {
-    "prepublish": [ "npm install", "bower install" ],
-    "prepare": "gulp minify"
+    "prepublish": [ "npm install", "bower install" ]
   }
 }
