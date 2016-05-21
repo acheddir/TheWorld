@@ -4,7 +4,7 @@
     "BingKey": "DONTHARDCODEKEYSINCONFIGURATION"
   },
   "Data": {
-    "WorldContextConnection": "Server=(localdb)\\ProjectsV12;Database=TheWorld;Trusted_Connection=true;MultipleActiveResultSets=true;"
+    "WorldContextConnection": "Server=tcp:acheddir.database.windows.net,1433;Data Source=acheddir.database.windows.net;Initial Catalog=TheWorld;Persist Security Info=False;User ID={your_username};Password={your_password};Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   }
 }
 // ProjectsV12
