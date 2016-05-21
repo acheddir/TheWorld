@@ -4,7 +4,7 @@
     "BingKey": "DONTHARDCODEKEYSINCONFIGURATION"
   },
   "Data": {
-    "WorldContextConnection": "Server=(localdb)\\LocalDBApp;Database=TheWorld;Trusted_Connection=true;MultipleActiveResultSets=true;"
+    "WorldContextConnection": "Server=(localdb)\\ProjectsV12;Database=TheWorld;Trusted_Connection=true;MultipleActiveResultSets=true;"
   }
 }
 // ProjectsV12
