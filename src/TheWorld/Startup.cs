@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNet.Authentication.Cookies;
@@ -34,12 +34,7 @@ namespace TheWorld
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(config =>
-            {
-#if !DEBUG
-                config.Filters.Add(new RequireHttpsAttribute());
-#endif
-            })
+            services.AddMvc()
             .AddJsonOptions(opt =>
             {
                 opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
