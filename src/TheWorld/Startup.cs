@@ -5,7 +5,6 @@ using Microsoft.AspNet.Authentication.Cookies;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -22,11 +21,12 @@ namespace TheWorld
     {
         public static IConfigurationRoot Configuration;
 
-        public Startup(IApplicationEnvironment appEnv, IRuntimeEnvironment runtimeEnvironment)
+        public Startup(IApplicationEnvironment appEnv, IRuntimeEnvironment runtimeEnvironment, IHostingEnvironment hostingEnvironment)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
+                .AddJsonFile($"config.{hostingEnvironment.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();

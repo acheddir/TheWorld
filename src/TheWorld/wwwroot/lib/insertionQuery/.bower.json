@@ -1,0 +1,33 @@
+{
+  "name": "insertionQuery",
+  "version": "1.0.3",
+  "homepage": "https://github.com/naugtur/insertionQuery",
+  "authors": [
+    "Naugtur <naugtur@gmail.com>"
+  ],
+  "description": "Non-dom-event way to catch DOM insertions. Works in IE10+ and filters by selectors.",
+  "main": "insQ.js",
+  "keywords": [
+    "domNodeInserted",
+    "DOM",
+    "insertion",
+    "css",
+    "animation",
+    "mutation"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "_release": "1.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.3",
+    "commit": "48e2a9727f57cd1183ee6a08ed696f51184df7b9"
+  },
+  "_source": "https://github.com/naugtur/insertionQuery.git",
+  "_target": "~1.0.3",
+  "_originalSource": "insertionQuery"
+}

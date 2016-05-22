@@ -2,6 +2,10 @@ body,html{
     height: 100%;
 }
 
+body {
+    line-height: 1;
+}
+
 .headshot {
     max-width: 50px;
     border: 1px solid #222;
@@ -68,11 +72,41 @@ nav.sidebar, .main{
     vertical-align: middle;
 }
 
+.borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+    border: none;
+}
+
+.nospace, .nospace tbody tr td, .nospace tbody tr th {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
 #map {
     width: 100%;
     height: 600px;
 }
 
+.note {
+    margin: 0 0 20px;
+    padding: 15px 30px 15px 15px;
+    border-left: 5px solid #eee;
+}
+
+.note ul {
+    list-style: none;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.note-danger {
+    background-color: #fef7f8;
+    border-color: #f0868e;
+    color: #b22222;
+    font-size: 12px;
+}
+
+.validation-summary { display:none; }
+.validation-summary.validation-summary-errors { display: block; }
 
 /* .....NavBar: Icon only with coloring/layout.....*/
 

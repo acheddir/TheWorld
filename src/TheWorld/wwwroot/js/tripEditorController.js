@@ -19,7 +19,6 @@
         $http.get(url)
             .then(function (response) {
                 angular.copy(response.data.stops, vm.stops);
-                debugger;
                 _showMap(vm.stops);
             }, function (err) {
                 vm.errorMessage = "Failed to load stops: " + err;

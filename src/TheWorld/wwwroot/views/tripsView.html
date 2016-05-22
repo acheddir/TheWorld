@@ -23,10 +23,20 @@
 	
 	    <form novalidate name="newTripForm" ng-submit="vm.addTrip()" class="col-md-4">
 	        <div class="form-group">
-	            <label for="name">Trip Name</label>
-	            <input type="text" class="form-control" id="name" name="name" ng-model="vm.newTrip.name" required ng-minlength="5" />
-	            <span ng-show="newTripForm.name.$error.required" class="text-warning text-muted" style="font-size: 11px;"><i class="fa fa-warning"></i> Name is required.</span>
-	            <span ng-show="newTripForm.name.$error.minlength" class="text-warning text-muted" style="font-size: 11px;"><i class="fa fa-warning"></i> Name must be at least 5 characters.</span>
+                <table class="table borderless nospace">
+                    <tr>
+                        <td><label for="name">Trip Name</label></td>
+                        <td>
+                            <span ng-show="newTripForm.name.$error.required" class="text-warning text-muted pull-right" style="font-size: 11px;"><i class="fa fa-warning"></i> is required.</span>
+                            <span ng-show="newTripForm.name.$error.minlength" class="text-warning text-muted pull-right" style="font-size: 11px;"><i class="fa fa-warning"></i> must be at least 5 characters.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="text" class="form-control" id="name" name="name" ng-model="vm.newTrip.name" required ng-minlength="5"/>
+                        </td>
+                    </tr>
+                </table>
 	        </div>
 	        <div class="form-group">
 	            <input type="submit" value="Add" class="btn btn-sm btn-success" ng-disabled="newTripForm.$invalid" />

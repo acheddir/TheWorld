@@ -4,9 +4,10 @@ namespace TheWorld.ViewModels
 {
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "is required")]
         public string Username { get; set; }
-        [Required]
+        [Required(ErrorMessage = "is required")]
+        [Display(Name = "Password")]
         public string Pwd { get; set; } 
     }
 }

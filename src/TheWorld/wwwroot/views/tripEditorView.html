@@ -8,17 +8,38 @@
 
 		<form novalidate name="newStopForm" ng-submit="vm.addStop()">
 	        <div class="form-group">
-	            <label for="arrival">Date</label>
-	            <input data-provide="datepicker" class="form-control" id="arrival" name="arrival" ng-model="vm.newStop.arrival" 
-					   required ng-pattern="/^(\d{2})\/(\d{2})\/(\d{4})$/"/>
-				<span ng-show="newStopForm.arrival.$error.required" class="text-warning text-muted" style="font-size: 11px;"><i class="fa fa-warning"></i> Arrival date is required.</span>
-				<span ng-show="newStopForm.arrival.$error.pattern" class="text-warning text-muted" style="font-size: 11px;"><i class="fa fa-warning"></i> Arrival date must in format of mm/dd/yyyy.</span>
+                <table class="table borderless nospace">
+                    <tr>
+                        <td>
+                            <label for="arrival">Date</label>
+                            <span ng-show="newStopForm.arrival.$error.required" class="text-warning text-muted pull-right" style="font-size: 11px;"><i class="fa fa-warning"></i> is required.</span>
+                            <span ng-show="newStopForm.arrival.$error.pattern" class="text-warning text-muted pull-right" style="font-size: 11px;"><i class="fa fa-warning"></i> must be in format of mm/dd/yyyy.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input data-provide="datepicker" class="form-control" id="arrival" name="arrival" ng-model="vm.newStop.arrival"
+                                   required ng-pattern="/^(\d{2})\/(\d{2})\/(\d{4})$/" />
+                        </td>
+                    </tr>
+                    
+                </table>
 	        </div>
 	        <div class="form-group">
-	            <label for="location">Location</label>
-	            <input class="form-control" id="location" name="location" ng-model="vm.newStop.name" required ng-minlength="5" />
-				<span ng-show="newStopForm.location.$error.required" class="text-warning text-muted" style="font-size: 11px;"><i class="fa fa-warning"></i> Location is required.</span>
-				<span ng-show="newStopForm.location.$error.minlength" class="text-warning text-muted" style="font-size: 11px;"><i class="fa fa-warning"></i> Location must be at least 5 characters.</span>
+                <table class="table borderless nospace">
+                    <tr>
+                        <td>
+                            <label for="location">Location</label>
+                            <span ng-show="newStopForm.location.$error.required" class="text-warning text-muted pull-right" style="font-size: 11px;"><i class="fa fa-warning"></i> is required.</span>
+                            <span ng-show="newStopForm.location.$error.minlength" class="text-warning text-muted pull-right" style="font-size: 11px;"><i class="fa fa-warning"></i> must be at least 5 characters.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input class="form-control" id="location" name="location" ng-model="vm.newStop.name" required ng-minlength="5" />
+                        </td>
+                    </tr>
+                </table>
 	        </div>
 	        <div class="form-group">
 	            <input type="submit" value="Add" class="btn btn-success" ng-disabled="newStopForm.$invalid" />

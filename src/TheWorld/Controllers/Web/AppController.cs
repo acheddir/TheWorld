@@ -46,13 +46,15 @@ namespace TheWorld.Controllers.Web
                 {
                     ModelState.AddModelError("", "Could not send email, configuration problem.");
                 }
-
-                if (_mailService.SendMail(email, email,
-                    $"Contact Page from {model.Name} ({model.Email})",
-                    model.Message))
+                else
                 {
-                    ModelState.Clear();
-                    ViewBag.MessageSuccess = "Mail Sent. Thanks!";
+                    if (_mailService.SendMail(email, email,
+                        $"Contact Page from {model.Name} ({model.Email})",
+                        model.Message))
+                    {
+                        ModelState.Clear();
+                        ViewBag.MessageSuccess = "Mail Sent. Thanks!";
+                    }
                 }
             }
 

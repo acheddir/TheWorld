@@ -12,18 +12,21 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "Hosting:Environment": "Production"
+        "Hosting:Environment": "Development"
       }
     },
     "web": {
       "commandName": "web",
       "environmentVariables": {
-        "Hosting:Environment": "Development"
+        "Hosting:Environment": "Production"
       }
     },
     "watch": {
       "commandName": "watch",
-      "commandLineArgs": "web"
+      "commandLineArgs": "web",
+      "environmentVariables": {
+        "Hosting:Environment": "Development"
+      }
     }
   }
 }
