@@ -1,5 +1,5 @@
 ﻿{
   "Data": {
-    "WorldContextConnection": "Server=acheddir.database.windows.net;Initial Catalog=TheWorld;Persist Security Info=False;User ID=acheddir;Password=@cheddiR1988;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    "WorldContextConnection": ""
   }
 }
